@@ -291,3 +291,16 @@ ActiveAdmin.setup do |config|
   #
   # config.order_clause = MyOrderClause
 end
+class ActiveAdmin::Devise::SessionsController
+
+ def after_sign_in_path_for(resource)
+  case resource
+   when AdminUser then '/admin'
+    else super
+  end
+ end
+
+ def after_sign_out_path_for(resource)
+  '/admin'
+ end
+end
