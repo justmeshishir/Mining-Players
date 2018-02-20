@@ -1,15 +1,15 @@
 class AssetsController < ApplicationController
 	before_action :authenticate_account!, only:[:new,:create] 
 	def index
-				@assets = Asset.where(account_id: current_account.id)
+		@assets = Asset.where(account_id: current_account.id)
 	end			
 	def create
 		@assets = current_account.assets.create(asset_params)
 		if @assets.valid?
-				redirect_to assets_path
-			else
-				render :index,status: :unprocessable_entity
-			end		
+			redirect_to assets_path
+		else
+			render :index,status: :unprocessable_entity
+		end		
 	end	
 
 	def return
