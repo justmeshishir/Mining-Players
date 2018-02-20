@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   end
   resources :accounts
   resources :assets do
-  get 'return', :param => :id, :on => :collection
+  get 'return', :on => :collection
   get 'unreturn', :on => :collection
 	end
 end

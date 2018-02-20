@@ -41,15 +41,13 @@
             <p><%= asset.model %></p>
             <p><%= asset.memory %></p>
             <% if !asset.return_request %>
-            <%= link_to 'Return' , return_assets_path(asset.id), class: 'btn btn-sm btn-success' %>
+            <%= link_to 'Return' , return_assets_path(id: asset.id), class: 'btn btn-sm btn-success' %>
             <% else %>
-            <%= link_to 'Unreturn' , unreturn_assets_path(asset.id), class: 'btn btn-sm btn-primary' %> 
+            <%= link_to 'Unreturn' , unreturn_assets_path(id: asset.id), class: 'btn btn-sm btn-primary' %> 
             <% end %>  
           </blockquote>
         </div>
       </div>
    <% end %>   
  </body>    
-
-<%= link_to 'Edit', edit_account_path(t) , class: 'btn btn-sm btn-primary'%>
 
