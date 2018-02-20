@@ -12,11 +12,12 @@
       </div>
         <ul class="nav navbar-nav navbar-right">
           <% if account_signed_in? %>
-            <%= link_to 'Login Out', destroy_account_session_path %>
+            <li><%= link_to 'Log Out', destroy_account_session_path %></li>
+            <li><%= link_to 'Edit Profile' , edit_account_registration_path %></li>
           <% else %>
-            <%= link_to 'Home', root_path %>
-            <%= link_to 'Login', new_account_registration_path %>
-            <%= link_to 'Sign Up', new_account_session_path %>
+            <li><%= link_to 'Home', root_path %></li>
+            <li><%= link_to 'Login', new_account_registration_path %></li>
+            <li><%= link_to 'Sign Up', new_account_session_path %></li>
           <% end %>
         </ul>
       </div><!-- /.container-fluid -->
