@@ -12,7 +12,7 @@
       </div>
         <ul class="nav navbar-nav navbar-right">
           <% if account_signed_in? %>
-            <li><%= link_to 'Log Out', destroy_account_session_path %></li>
+            <li><%= link_to 'Log Out', destroy_account_session_path, method: :delete %></li>
             <li><%= link_to 'Edit Profile' , edit_account_registration_path %></li>
           <% else %>
             <li><%= link_to 'Home', root_path %></li>
