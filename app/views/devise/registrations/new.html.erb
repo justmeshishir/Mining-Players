@@ -38,7 +38,10 @@
 
   <div class="field">
     <%= f.label "How would you like to receive your cards earning?" %><br />
-    <%= collection_radio_buttons(:account, :receive_type, Account.receive_types, :first, :first)%>
+    <%= f.label "AUD" %>
+    <%= f.radio_button(:receive_type, "aud".to_sym) %><br />
+    <%= f.label "CRYPTO" %>
+    <%= f.radio_button(:receive_type, "crypto".to_sym) %>
   </div>
 
   <div class="actions">
