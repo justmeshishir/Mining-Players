@@ -6,4 +6,5 @@ class Account < ApplicationRecord
   validates :name, :email, :address, :contact, presence: true
 
   enum receive_type: [:aud, :crypto]
+
 end
