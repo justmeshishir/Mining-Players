@@ -5,4 +5,8 @@ Rails.application.routes.draw do
     root to:   'devise/sessions#new'
   end
   resources :accounts
+  resources :assets do
+  get 'return', :param => :id, :on => :collection
+  get 'unreturn', :on => :collection
+	end
 end

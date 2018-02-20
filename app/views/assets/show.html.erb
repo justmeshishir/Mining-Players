@@ -1,0 +1,13 @@
+ <% @assets.each do|asset| %>
+      
+      <div class = "panel panel-default hvr-rectangle-out">
+        <div class="panel-body ">
+          <blockquote>
+            <p><%= asset.name %></p>
+            <p><%= asset.make %></p>
+            <p><%= asset.model %></p>
+            <p><%= asset.memory %></p>   
+          </blockquote>
+        </div>
+      </div>
+   <% end %>   
