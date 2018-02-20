@@ -1,5 +1,11 @@
 ActiveAdmin.register Asset do
-  permit_params :all
+  actions :all
+  permit_params :account, :name, :make, :model, :memory, :return_request, :returned_date, :lock
+
+  scope :all
+  scope :active_assets
+  scope :return_request
+  scope :locked
 
   index do
     column :id

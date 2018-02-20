@@ -1,5 +1,6 @@
 ActiveAdmin.register Account do
-  permit_params :all
+  actions :all
+  permit_params :name, :address, :contact, :email, :receive_type
 
   index do
     column :id
