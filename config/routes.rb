@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   devise_for :accounts
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  devise_scope :account do
-    root to:   'homes#index'
-  end
+  root 'homes#index'
+
   resources :accounts
+  resources :assets do
+  get 'return', :on => :collection
+  get 'unreturn', :on => :collection
+	end
 end

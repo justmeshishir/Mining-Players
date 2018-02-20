@@ -40,4 +40,19 @@ ActiveRecord::Schema.define(version: 20180219140611) do
     t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
   end
 
+  create_table "assets", force: :cascade do |t|
+    t.text "name"
+    t.string "make"
+    t.string "model"
+    t.string "memory"
+    t.boolean "return_request", default: false
+    t.date "return_request_date"
+    t.date "returned_date"
+    t.boolean "lock", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "account_id"
+    t.index ["account_id"], name: "index_assets_on_account_id"
+  end
+
 end
