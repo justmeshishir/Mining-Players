@@ -17,7 +17,7 @@
     <%= f.label :contact %><br />
     <%= f.email_field :contact, autofocus: true, autocomplete: "contact" %>
   </div>
-  
+
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -44,6 +44,14 @@
   <div class="field">
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label "How would you like to receive your cards earning?" %><br />
+    <%= f.label "AUD" %>
+    <%= f.radio_button(:receive_type, "aud") %><br />
+    <%= f.label "CRYPTO" %>
+    <%= f.radio_button(:receive_type, "crypto") %>
   </div>
 
   <div class="actions">

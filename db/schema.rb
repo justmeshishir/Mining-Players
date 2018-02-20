@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20180219064015) do
     t.string "contact"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "receive_type", default: 0
     t.index ["email"], name: "index_accounts_on_email", unique: true
     t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
   end
