@@ -1,0 +1,11 @@
+ <% @banks.each do|bank| %>
+      <div class = "panel panel-default hvr-rectangle-out">
+        <div class="panel-body ">
+          <blockquote>
+            <p><%= bank.name %></p>
+            <p><%= bank.bsb %></p>
+            <p><%= bank.account_number%></p>
+          </blockquote>
+        </div>
+      </div>
+   <% end %>   

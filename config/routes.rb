@@ -8,4 +8,7 @@ Rails.application.routes.draw do
   get 'return', :on => :collection
   get 'unreturn', :on => :collection
 	end
+  resources :withdraws, only: :index
+  resources :wallets , only:[:index , :create]
+  resources :banks, only:[:index , :create]
 end

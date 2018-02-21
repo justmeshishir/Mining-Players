@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mining PLayers</title>
+</head>
+<body>
+  <button type="button" class="btn btn-primary btn-lg btn_idea" data-toggle="modal" data-target="#myModal">
+  Withdraws
+</button>
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <% if @method == "aud" %>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add your Bank</h4>
+      </div>
+      
+      <div class="modal-body">
+       <%= simple_form_for Bank.new do |f| %>
+        <%= f.input :name %>
+        <%= f.input :bsb %>
+        <%= f.input :account_number %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <%= f.submit 'Submit', class: 'btn btn-primary' %>
+      </div>
+      <% end %>
+      <% else %>
+       <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add your Wallet</h4>
+      </div>
+      <div class="modal-body">
+       <%= simple_form_for Wallet.new do |f| %>
+        <%= f.input :address %>
+        <%= f.input :date %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <%= f.submit 'Submit', class: 'btn btn-primary' %>
+      </div>
+      <% end %>
+      <% end %> 
+
+    </div>
+  </div>
+</div>
+</body>

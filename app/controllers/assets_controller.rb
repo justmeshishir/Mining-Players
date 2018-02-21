@@ -12,6 +12,20 @@ class AssetsController < ApplicationController
 		end		
 	end	
 
+	def edit
+		@asset = Asset.find(params[:id])
+	end	
+
+	def update
+		@asset = Asset.find(params[:id])
+		if @asset.update(asset_params)
+			redirect_to assets_path
+		else
+			redirect_to edit_asset_path	
+		end	
+	end	
+
+
 	def return
 		Asset.where(id: params[:id]).update(return_request: true , return_request_date: Date.today)
 		redirect_to assets_path
