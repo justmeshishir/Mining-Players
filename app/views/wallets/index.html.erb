@@ -1,0 +1,11 @@
+ <% @wallets.each do|wallet| %>
+      
+      <div class = "panel panel-default hvr-rectangle-out">
+        <div class="panel-body ">
+          <blockquote>
+            <p><%= wallet.address %></p>
+            <p><%= wallet.date %></p> 
+          </blockquote>
+        </div>
+      </div>
+ <% end %>   

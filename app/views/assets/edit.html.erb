@@ -1,0 +1,8 @@
+<h1>Edit Asset</h1>
+<%= simple_form_for @asset , method: :patch do |f| %>
+        <%= f.input :name %>
+        <%= f.input :make %>
+        <%= f.input :model %>
+        <%= f.input :memory %>
+        <%= f.submit 'Submit' , class: 'btn btn-primary'  %>
+ <% end %>       
