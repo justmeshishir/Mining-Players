@@ -16,7 +16,7 @@
           <li><%= link_to 'Withdraw' , withdraws_path %></li>
           <li><%= link_to 'Log Out', destroy_account_session_path, method: :delete %></li>
           <% else %>
-            <li><%= link_to 'Home', root_path %></li>
+           <li><%= link_to 'Home', root_path %></li>
             <li><%= link_to 'Sign Up', new_account_registration_path %></li>
             <li><%= link_to 'Log In', new_account_session_path %></li>
           <% end %>

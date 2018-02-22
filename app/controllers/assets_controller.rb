@@ -1,29 +1,31 @@
 class AssetsController < ApplicationController
-	before_action :authenticate_account!, only:[:new,:create] 
+	before_action :authenticate_account!
 	def index
 		@assets = Asset.where(account_id: current_account.id)
-	end			
+	end
 	def create
-		@assets = current_account.assets.create(asset_params)
-		if @assets.valid?
+		@asset = current_account.assets.create(asset_params)
+		if @asset.valid?
+			#binding.pry
+			Balance.create(asset_id: @asset.id, account_id: @asset.account_id)
 			redirect_to assets_path
 		else
 			render :index,status: :unprocessable_entity
-		end		
-	end	
+		end
+	end
 
 	def edit
 		@asset = Asset.find(params[:id])
-	end	
+	end
 
 	def update
 		@asset = Asset.find(params[:id])
 		if @asset.update(asset_params)
 			redirect_to assets_path
 		else
-			redirect_to edit_asset_path	
-		end	
-	end	
+			redirect_to edit_asset_path
+		end
+	end
 
 
 	def return
@@ -39,7 +41,7 @@ class AssetsController < ApplicationController
 	private
 	def asset_params
 		params.require(:asset).permit(:account_id,:name,:make,:model,:memory)
-	end	
+	end
 
 	#def update_params
 		#params.require(:asset).permit(:requet_return, ret_date: Date)

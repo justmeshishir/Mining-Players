@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180220163550) do
+ActiveRecord::Schema.define(version: 20180222161113) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,11 +89,12 @@ ActiveRecord::Schema.define(version: 20180220163550) do
   create_table "balances", force: :cascade do |t|
     t.integer "asset_id"
     t.string "crypto_name"
-    t.float "crypto_amount"
-    t.float "aud_amount"
+    t.float "crypto_amount", default: 0.0
+    t.float "aud_amount", default: 0.0
     t.date "payout_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "account_id"
     t.index ["asset_id"], name: "index_balances_on_asset_id"
   end
 
