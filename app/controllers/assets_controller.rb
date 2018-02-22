@@ -6,7 +6,8 @@ class AssetsController < ApplicationController
 	def create
 		@assets = current_account.assets.create(asset_params)
 		if @assets.valid?
-			redirect_to assets_path
+			redirect_to assets_path(:controller => :BalanceController, :asset_id => :@assets , :crypto_name => :null , :crypto_amount => :null  ,:aud_amount => :null , :payout_date => :null ) 
+			
 		else
 			render :index,status: :unprocessable_entity
 		end		

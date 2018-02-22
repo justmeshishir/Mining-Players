@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 20180220163550) do
 
   create_table "balances", force: :cascade do |t|
     t.integer "asset_id"
-    t.string "crypto_name"
+    t.string "crypto_name" 
     t.float "crypto_amount"
     t.float "aud_amount"
     t.date "payout_date"
