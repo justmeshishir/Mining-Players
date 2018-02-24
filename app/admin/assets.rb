@@ -14,6 +14,7 @@ ActiveAdmin.register Asset do
     column :make
     column :model
     column :memory
+    column :status
     actions
   end
 end
