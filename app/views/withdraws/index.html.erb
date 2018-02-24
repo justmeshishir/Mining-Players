@@ -55,17 +55,31 @@
 
 <div id="exTab2" class="container"> 
 <ul class="nav nav-tabs">
-
+      <% if @method == "aud" %>
       <li class="active">
         <a  href="#4" data-toggle="tab">Banks</a>
       </li>
+      
       <li><a href="#5" data-toggle="tab">Wallets</a>
       </li>
+      <% else %>
+      <li >
+        <a  href="#4" data-toggle="tab">Banks</a>
+      </li>
+      
+      <li class="active"><a href="#5" data-toggle="tab">Wallets</a>
+      </li>
+      <% end %>
      
     </ul>
 
       <div class="tab-content ">
+        <% if @method == "aud" %>
           <div class="tab-pane active" id="4">
+           <% else %>
+          <div class="tab-pane" id="4">
+            <% end %>
+
       <% if @banks.blank? %>
         <h4>You have not sent any balance yet.</h4>
       <% else %>
@@ -95,7 +109,11 @@
     <%= will_paginate @banks %>
   </div> 
       </div>
-        <div class="tab-pane " id="5">
+      <% if @method != "aud" %> 
+        <div class="tab-pane active" id="5">
+         <% else %>
+          <div class="tab-pane " id="5">
+          <% end %>  
       <% if @wallets.blank? %>
         <h4>You have not received any balance yet.</h4>
       <% else %>
@@ -115,7 +133,7 @@
             </tr>
           <% end %>
         </table>
-         
+
       <% end %>  
       <div class="text-center">
     <%= will_paginate @wallets %>
