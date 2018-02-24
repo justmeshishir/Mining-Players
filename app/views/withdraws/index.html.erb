@@ -4,7 +4,7 @@
   <title>Mining PLayers</title>
 </head>
 <body>
-  <button type="button" class="btn btn-primary btn-lg btn_idea" data-toggle="modal" data-target="#myModal">
+  <button type="button" class="btn btn-primary btn-lg btn_idea pull-right" data-toggle="modal" data-target="#myModal" pull-center>
   Withdraws
 </button>
 
@@ -49,4 +49,72 @@
     </div>
   </div>
 </div>
+<br />
+<br />
+<!-- Tab panes -->
+
+<div id="exTab2" class="container"> 
+<ul class="nav nav-tabs">
+
+      <li class="active">
+        <a  href="#4" data-toggle="tab">Banks</a>
+      </li>
+      <li><a href="#5" data-toggle="tab">Wallets</a>
+      </li>
+     
+    </ul>
+
+      <div class="tab-content ">
+          <div class="tab-pane active" id="4">
+      <% if @banks.blank? %>
+        <h4>You have not sent any balance yet.</h4>
+      <% else %>
+        <table class="table">
+          <thead>
+            <th>Name</th>
+            <th>Bsb</th>
+            <th>Account number</th>
+          </thead>
+          <% @banks.each do |bank| %>
+            <tr>
+              <td>
+                <%= bank.name %>
+              </td>
+              <td>
+                <%= bank.bsb %>
+              </td>
+              <td> 
+                <%= bank.account_number %>
+              </td>
+            </tr>
+          <% end %>
+
+        </table>
+        <% end %>
+      </div>
+        <div class="tab-pane " id="5">
+      <% if @wallets.blank? %>
+        <h4>You have not received any balance yet.</h4>
+      <% else %>
+        <table class="table">
+          <thead>
+            <th>Address</th>
+            <th>Date</th>
+          </thead>
+          <% @wallets.each do |wallet| %>
+            <tr>
+              <td>
+                <%= wallet.address %>
+              </td>
+              <td>
+                <%= wallet.date %>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+      <% end %>    
+        </div>
+      </div>
+  </div>
+
 </body>

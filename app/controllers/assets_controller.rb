@@ -1,8 +1,12 @@
 class AssetsController < ApplicationController
-	before_action :authenticate_account!
+
+	before_action :authenticate_account!, only:[:new,:create] 
+
 	def index
-		@assets = Asset.where(account_id: current_account.id)
-	end
+		@assets = Asset.where(account_id: current_account.id).order(:name).page params[:page]
+		
+	end			
+
 	def create
 		@asset = current_account.assets.create(asset_params)
 		if @asset.valid?
@@ -10,6 +14,7 @@ class AssetsController < ApplicationController
 			Balance.create(asset_id: @asset.id, account_id: @asset.account_id)
 			redirect_to assets_path
 		else
+			flash[:alert] = "Invalid input"	
 			render :index,status: :unprocessable_entity
 		end
 	end

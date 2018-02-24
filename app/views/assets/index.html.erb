@@ -7,6 +7,7 @@
   <button type="button" class="btn btn-primary btn-lg btn_idea" data-toggle="modal" data-target="#myModal">
   Add Asset
 </button>
+<br><br>
 
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -31,24 +32,41 @@
     </div>
   </div>
 </div>
-  <% @assets.each do|asset| %>
-      
-      <div class = "panel panel-default hvr-rectangle-out">
-        <div class="panel-body ">
-          <blockquote>
-            <p><%= asset.name %></p>
-            <p><%= asset.make %></p>
-            <p><%= asset.model %></p>
-            <p><%= asset.memory %></p>
-            <% if !asset.return_request %>
-            <%= link_to 'Return' , return_assets_path(id: asset.id), class: 'btn btn-sm btn-success' %>
-            <% else %>
-            <%= link_to 'Unreturn' , unreturn_assets_path(id: asset.id), class: 'btn btn-sm btn-primary' %> 
-            <% end %>
-            <%= link_to 'Edit Assets' , edit_asset_path(id: asset.id), class: 'btn btn-sm btn-primary' %>  
-          </blockquote>
-        </div>
-      </div>
-   <% end %>   
- </body>    
 
+              
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Make</th>
+        <th>Model</th>
+        <th>Memory</th>
+      </tr>
+    </thead>
+    
+  <% @assets.each do|asset| %>
+      <tbody>
+      <tr>
+        <td><%= asset.name %></td>
+        <td><%= asset.make %></td>
+        <td><%= asset.memory %></td>
+        <td><%= asset.model %></td>
+        <% if !asset.return_request %>
+        <td><%= link_to 'Return' , return_assets_path(id: asset.id), class: 'btn btn-sm btn-success' %></td>
+        <% else %>
+        <td><%= link_to 'Unreturn' , unreturn_assets_path(id: asset.id), class: 'btn btn-sm btn-primary' %> </td>
+         <% end %> 
+        <td><%= link_to 'Edit Assets' , edit_asset_path(id: asset.id), class: 'btn btn-sm btn-primary' %> </td>
+      </tr>
+   
+      
+    </tbody>         
+          
+   <% end %>  
+ </table>
+ <div class="text-center">
+    <%= paginate @assets %>
+  </div>  
+    
+ </body> 
+ 

@@ -8,5 +8,7 @@ class Asset < ApplicationRecord
 
 	has_many :balances
 
+	paginates_per 10
+
 	enum status: [:waiting_delivery, :received, :active, :returned]
 end
