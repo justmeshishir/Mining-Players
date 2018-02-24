@@ -26,8 +26,8 @@ ActiveAdmin.register Asset do
       f.input :model
       f.input :memory
       f.input :return_request
-      f.input :return_request_date
-      f.input :returned_date
+      f.input :return_request_date, as: :datepicker
+      f.input :returned_date, as: :datepicker
       f.input :status
       f.input :lock
     end
