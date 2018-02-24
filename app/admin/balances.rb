@@ -5,6 +5,7 @@ ActiveAdmin.register Balance do
 
   scope :unreturned_assets
   scope :returned_assets
+  
   # controller do
   #   def active_assets
   #     print "------------------------------------------------------>>>>>>>>>>>>>"

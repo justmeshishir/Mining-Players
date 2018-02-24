@@ -1,25 +1,26 @@
 <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-     <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">Mining Players</a>
-      </div>
-        <ul class="nav navbar-nav navbar-right">
-          <% if account_signed_in? %>
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to 'Mining Players' , root_path, class:'navbar-brand' %>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <% if account_signed_in? %>
+          <li><%= link_to 'Assets' , assets_path %></li>
+          <li><%= link_to 'Payouts' , withdraws_path %></li>
           <li><%= link_to 'Edit Profile' , edit_account_registration_path %></li>
-          <li><%= link_to 'Withdraw' , withdraws_path %></li>
           <li><%= link_to 'Log Out', destroy_account_session_path, method: :delete %></li>
           <% else %>
            <li><%= link_to 'Home', root_path %></li>
             <li><%= link_to 'Sign Up', new_account_registration_path %></li>
             <li><%= link_to 'Log In', new_account_session_path %></li>
           <% end %>
-        </ul>
-      </div><!-- /.container-fluid -->
-  </nav>
+      </ul>
+    </div>
+  </div>
+</nav>
