@@ -45,6 +45,7 @@
         <th>Make</th>
         <th>Model</th>
         <th>Memory</th>
+        <th>Status</th>
       </tr>
     </thead>
 
@@ -56,12 +57,20 @@
         <td><%= asset.make %></td>
         <td><%= asset.memory %></td>
         <td><%= asset.model %></td>
-        <% if !asset.return_request %>
+        <td><%= asset.status %></td>
+        <% if !asset.return_request%>
         <td><%= link_to 'Return' , return_assets_path(id: asset.id), class: 'btn btn-sm btn-success' %></td>
         <% else %>
-        <td><%= link_to 'Unreturn' , unreturn_assets_path(id: asset.id), class: 'btn btn-sm btn-primary' %> </td>
+        <td>
+          <% if asset.status != 'returned' %>
+            <%= link_to 'Unreturn' , unreturn_assets_path(id: asset.id), class: 'btn btn-sm btn-primary' %> </td>
+          <% end %>
          <% end %>
+         <% if !asset.lock || asset.status == " waiting_ delivery" %>
         <td><%= link_to 'Edit' , edit_asset_path(id: asset.id), class: 'btn btn-sm btn-primary' %> </td>
+        <% else %>
+        <td><b>Locked</b></td>
+        <% end %>
       </tr>
       <% else %>
       <tr>
@@ -69,6 +78,7 @@
         <td><%= asset.make %></td>
         <td><%= asset.memory %></td>
         <td><%= asset.model %></td>
+        <td><%= asset.status %></td>
         <% if !asset.return_request %>
         <td><%= link_to 'Return' , return_assets_path(id: asset.id), class: 'btn btn-sm btn-success' %></td>
         <% else %>
