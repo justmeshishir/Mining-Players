@@ -1,5 +1,6 @@
 class BanksController < ApplicationController
-
+  before_action :authenticate_account!
+  
 	def create
 		@banks = current_account.banks.create(bank_params)
 		if @banks.valid?
@@ -13,5 +14,4 @@ class BanksController < ApplicationController
 	def bank_params
 		params.require(:bank).permit(:account_id,:name,:bsb,:account_number)
 	end	
-
 end

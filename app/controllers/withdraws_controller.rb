@@ -1,4 +1,5 @@
 class WithdrawsController < ApplicationController
+	before_action :authenticate_account!
 	def index
 		@method = current_account.receive_type
 		@wallets = Wallet.where(account_id: current_account.id).order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
