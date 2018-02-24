@@ -1,4 +1,6 @@
 class Wallet < ApplicationRecord
 	belongs_to :account
-	paginates_per 10
+	paginates_per
+
+	validates :address, :date, presence: true
 end
