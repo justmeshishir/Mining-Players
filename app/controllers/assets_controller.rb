@@ -40,15 +40,15 @@ class AssetsController < ApplicationController
 
 	def return
 		Asset.where(id: params[:id]).update(return_request: true , return_request_date: Date.today)
-		@asset = Asset.find(params[:id])
-		AssetMailer.request_asset(@asset).deliver
+		#@asset = Asset.find(params[:id])
+		#AssetMailer.request_asset(@asset).deliver
 		redirect_to assets_path
 	end
 
 	def unreturn
 		Asset.where(id: params[:id]).update(return_request: false)
-		@asset = Asset.find(params[:id])
-		AssetMailer.unreturn_request_asset(@asset).deliver
+		#@asset = Asset.find(params[:id])
+		#AssetMailer.unreturn_request_asset(@asset).deliver
 		redirect_to assets_path
 	end
 
