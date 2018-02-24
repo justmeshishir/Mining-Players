@@ -77,7 +77,7 @@
          <% if !asset.lock || asset.status == " waiting_ delivery" %>
         <td><%= link_to 'Edit' , edit_asset_path(id: asset.id), class: 'btn btn-sm btn-primary' %> </td>
         <% else %>
-        <td>locked</td>
+        <td><b>Locked</b></td>
         <% end %>
       </tr>
       <% end %>
