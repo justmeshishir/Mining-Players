@@ -1,11 +1,11 @@
 class AssetsController < ApplicationController
 
-	before_action :authenticate_account!, only:[:new,:create] 
+	before_action :authenticate_account!, only:[:new,:create]
 
 	def index
 		@assets = Asset.where(account_id: current_account.id).order("created_at DESC").paginate(page: params[:page], per_page: 10)
-		
-	end			
+
+	end
 
 	def create
 		@asset = current_account.assets.create(asset_params)
@@ -14,15 +14,17 @@ class AssetsController < ApplicationController
 			Balance.create(asset_id: @asset.id, account_id: @asset.account_id)
 			redirect_to assets_path
 		else
-			flash[:alert] = "Invalid input"	
+			flash[:alert] = "Invalid input"
 			render :index,status: :unprocessable_entity
 		end
 	end
 
 	def edit
 		@asset = Asset.find(params[:id])
-		redirect_to assets_path if @asset.lock
-		flash[:alert] = "You cannot edit the locked assets "
+		if @asset.lock
+			redirect_to assets_path
+			flash[:alert] = "You cannot edit the locked assets "
+		end
 	end
 
 	def update
