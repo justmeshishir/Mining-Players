@@ -91,6 +91,9 @@
 
         </table>
         <% end %>
+        <div class="text-center">
+    <%= will_paginate @banks %>
+  </div> 
       </div>
         <div class="tab-pane " id="5">
       <% if @wallets.blank? %>
@@ -112,7 +115,10 @@
             </tr>
           <% end %>
         </table>
-      <% end %>    
+      <% end %>  
+      <div class="text-center">
+    <%= will_paginate @wallets %>
+  </div>   
         </div>
       </div>
   </div>

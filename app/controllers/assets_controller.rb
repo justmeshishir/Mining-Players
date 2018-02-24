@@ -3,7 +3,7 @@ class AssetsController < ApplicationController
 	before_action :authenticate_account!, only:[:new,:create] 
 
 	def index
-		@assets = Asset.where(account_id: current_account.id).order(:name).page params[:page]
+		@assets = Asset.where(account_id: current_account.id).order("created_at DESC").paginate(page: params[:page], per_page: 10)
 		
 	end			
 	def create

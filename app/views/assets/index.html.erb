@@ -4,10 +4,10 @@
   <title>Ideator</title>
 </head>
 <body>
-  <button type="button" class="btn btn-primary btn-lg btn_idea" data-toggle="modal" data-target="#myModal">
+  <button type="button" class="btn btn-primary btn-lg btn_idea pull-right" data-toggle="modal" data-target="#myModal">
   Add Asset
 </button>
-<br><br>
+<br><br><br>
 
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -34,7 +34,7 @@
 </div>
 
               
-  <table class="table table-bordered">
+  <table class="table">
     <thead>
       <tr>
         <th>Name</th>
@@ -46,6 +46,20 @@
     
   <% @assets.each do|asset| %>
       <tbody>
+        <% if asset.return_request %>
+      <tr style="background:orange">
+        <td><%= asset.name %></td>
+        <td><%= asset.make %></td>
+        <td><%= asset.memory %></td>
+        <td><%= asset.model %></td>
+        <% if !asset.return_request %>
+        <td><%= link_to 'Return' , return_assets_path(id: asset.id), class: 'btn btn-sm btn-success' %></td>
+        <% else %>
+        <td><%= link_to 'Unreturn' , unreturn_assets_path(id: asset.id), class: 'btn btn-sm btn-primary' %> </td>
+         <% end %> 
+        <td><%= link_to 'Edit' , edit_asset_path(id: asset.id), class: 'btn btn-sm btn-primary' %> </td>
+      </tr>
+      <% else %>
       <tr>
         <td><%= asset.name %></td>
         <td><%= asset.make %></td>
@@ -56,8 +70,9 @@
         <% else %>
         <td><%= link_to 'Unreturn' , unreturn_assets_path(id: asset.id), class: 'btn btn-sm btn-primary' %> </td>
          <% end %> 
-        <td><%= link_to 'Edit Assets' , edit_asset_path(id: asset.id), class: 'btn btn-sm btn-primary' %> </td>
+        <td><%= link_to 'Edit' , edit_asset_path(id: asset.id), class: 'btn btn-sm btn-primary' %> </td>
       </tr>
+      <% end %>
    
       
     </tbody>         
@@ -65,8 +80,10 @@
    <% end %>  
  </table>
  <div class="text-center">
-    <%= paginate @assets %>
-  </div>  
+    <%= will_paginate @assets %>
+  </div> 
+
+
     
  </body> 
  
