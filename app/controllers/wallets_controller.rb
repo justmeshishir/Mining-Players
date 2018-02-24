@@ -1,7 +1,5 @@
 class WalletsController < ApplicationController
-	def index
-		@wallets = Wallet.where(account_id: current_account.id) 
-	end
+	
 	def create
 		@wallets = current_account.wallets.create(wallet_params)
 		if @wallets.valid?
@@ -9,6 +7,7 @@ class WalletsController < ApplicationController
 		else
 			render :index,status: :unprocessable_entity
 		end		
+
 	end	
 	private
 	def wallet_params

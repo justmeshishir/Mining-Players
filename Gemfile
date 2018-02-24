@@ -42,6 +42,7 @@ gem 'pry-rails', :group => :development
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'jquery-rails'
 
+
 gem 'activeadmin'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -51,6 +52,8 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem "letter_opener", :group => :development
 end
+gem 'will_paginate', '~> 3.1.0'
+gem 'kaminari'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.

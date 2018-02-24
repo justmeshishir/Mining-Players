@@ -6,4 +6,5 @@ class Asset < ApplicationRecord
 	scope :locked, -> {where(lock: true)}
 	
 	has_many :balances
+	paginates_per 10
 end

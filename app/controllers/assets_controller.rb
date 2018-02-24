@@ -1,14 +1,19 @@
 class AssetsController < ApplicationController
+
 	before_action :authenticate_account!, only:[:new,:create] 
+
 	def index
-		@assets = Asset.where(account_id: current_account.id)
+		@assets = Asset.where(account_id: current_account.id).order(:name).page params[:page]
+		
 	end			
 	def create
 		@assets = current_account.assets.create(asset_params)
 		if @assets.valid?
+			flash[:success] = "Your asset has been created"
 			redirect_to assets_path(:controller => :BalanceController, :asset_id => :@assets , :crypto_name => :null , :crypto_amount => :null  ,:aud_amount => :null , :payout_date => :null ) 
 			
 		else
+			flash[:alert] = "Invalid input"	
 			render :index,status: :unprocessable_entity
 		end		
 	end	
