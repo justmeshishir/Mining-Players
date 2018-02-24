@@ -21,6 +21,8 @@ class AssetsController < ApplicationController
 
 	def edit
 		@asset = Asset.find(params[:id])
+		redirect_to assets_path if @asset.lock
+		flash[:alert] = "You cannot edit the locked assets "
 	end
 
 	def update
