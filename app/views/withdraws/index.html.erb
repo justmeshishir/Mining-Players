@@ -5,7 +5,7 @@
 </head>
 <body>
   <button type="button" class="btn btn-primary btn-lg btn_idea pull-right" data-toggle="modal" data-target="#myModal" pull-center>
-  Withdraws
+  <span class="glyphicon glyphicon-plus"></span> &nbsp;Withdraw
 </button>
 
 
@@ -17,7 +17,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
         <h4 class="modal-title" id="myModalLabel">Add your Bank</h4>
       </div>
-      
+
       <div class="modal-body">
        <%= simple_form_for Bank.new do |f| %>
         <%= f.input :name %>
@@ -44,7 +44,7 @@
         <%= f.submit 'Submit', class: 'btn btn-primary' %>
       </div>
       <% end %>
-      <% end %> 
+      <% end %>
 
     </div>
   </div>
@@ -53,24 +53,24 @@
 <br />
 <!-- Tab panes -->
 
-<div id="exTab2" class="container"> 
+<div id="exTab2" class="container">
 <ul class="nav nav-tabs">
       <% if @method == "aud" %>
       <li class="active">
         <a  href="#4" data-toggle="tab">Banks</a>
       </li>
-      
+
       <li><a href="#5" data-toggle="tab">Wallets</a>
       </li>
       <% else %>
       <li >
         <a  href="#4" data-toggle="tab">Banks</a>
       </li>
-      
+
       <li class="active"><a href="#5" data-toggle="tab">Wallets</a>
       </li>
       <% end %>
-     
+
     </ul>
 
       <div class="tab-content ">
@@ -97,7 +97,7 @@
               <td>
                 <%= bank.bsb %>
               </td>
-              <td> 
+              <td>
                 <%= bank.account_number %>
               </td>
             </tr>
@@ -107,13 +107,13 @@
         <% end %>
         <div class="text-center">
     <%= will_paginate @banks %>
-  </div> 
+  </div>
       </div>
-      <% if @method != "aud" %> 
+      <% if @method != "aud" %>
         <div class="tab-pane active" id="5">
          <% else %>
           <div class="tab-pane " id="5">
-          <% end %>  
+          <% end %>
       <% if @wallets.blank? %>
         <h4>You have not received any balance yet.</h4>
       <% else %>
@@ -134,10 +134,10 @@
           <% end %>
         </table>
 
-      <% end %>  
+      <% end %>
       <div class="text-center">
     <%= will_paginate @wallets %>
-  </div>  
+  </div>
         </div>
       </div>
   </div>
