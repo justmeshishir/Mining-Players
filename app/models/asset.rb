@@ -13,6 +13,6 @@ class Asset < ApplicationRecord
 
 	enum status: [:waiting_delivery, :received, :active, :returned]
 
-	validates :name, :make, :model, :memory, presence: true
+	validates :name, :model, :memory, presence: true
 
 end

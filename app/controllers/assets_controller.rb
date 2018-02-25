@@ -54,7 +54,7 @@ class AssetsController < ApplicationController
 
 	private
 	def asset_params
-		params.require(:asset).permit(:account_id,:name,:make,:model,:memory)
+		params.require(:asset).permit(:account_id,:name,:make,:model,:memory,:serial_number,:description)
 	end
 
 	#def update_params

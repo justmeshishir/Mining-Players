@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180225100422) do
+ActiveRecord::Schema.define(version: 20180225102623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,8 @@ ActiveRecord::Schema.define(version: 20180225100422) do
     t.datetime "updated_at", null: false
     t.integer "account_id"
     t.integer "status", default: 0
+    t.string "serial_number"
+    t.text "description"
     t.index ["account_id"], name: "index_assets_on_account_id"
   end
 

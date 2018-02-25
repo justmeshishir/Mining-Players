@@ -1,6 +1,6 @@
 ActiveAdmin.register Asset do
   actions :all
-  permit_params :account, :name, :make, :model, :memory, :return_request, :returned_date, :status, :lock
+  permit_params :account, :name, :make, :model, :memory, :return_request, :returned_date, :status, :lock, :serial_number, :description
 
   scope :all
   scope :active_assets
