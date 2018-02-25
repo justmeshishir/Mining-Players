@@ -2,7 +2,6 @@ class BanksController < ApplicationController
   before_action :authenticate_account!
 
 	def create
-
 		@banks = current_account.banks.create(bank_params)
 		if @banks.valid?
 			redirect_to withdraws_path

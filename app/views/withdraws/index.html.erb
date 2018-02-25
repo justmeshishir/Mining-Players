@@ -57,7 +57,7 @@
 <br />
 <div>
   <p><b>Total in Bank:</b>  $ <%= @total_bank_withdraw %></p>
-  <p><b>Total in Wallet:</b>  $ <%= @total_wallet %></p>
+  <p><b>Total in Wallet:</b>  $ <%= @total_wallet_withdraw %></p>
 </div>
 <!-- Tab panes -->
 
@@ -96,6 +96,7 @@
             <th>Name</th>
             <th>Bsb</th>
             <th>Account number</th>
+            <th>Confirm</th>
           </thead>
           <% @banks.each do |bank| %>
             <tr>
@@ -107,6 +108,9 @@
               </td>
               <td>
                 <%= bank.account_number %>
+              </td>
+              <td>
+                <%= (bank.confirm?) ? "Confirmed" : "Not Confirmed" %>
               </td>
             </tr>
           <% end %>
@@ -129,6 +133,7 @@
           <thead>
             <th>Address</th>
             <th>Date</th>
+            <th>Confirm</th>
           </thead>
           <% @wallets.each do |wallet| %>
             <tr>
@@ -137,6 +142,9 @@
               </td>
               <td>
                 <%= wallet.date %>
+              </td>
+              <td>
+                <%= (wallet.confirm?) ? "Confirmed" : "Not Confirmed" %>
               </td>
             </tr>
           <% end %>

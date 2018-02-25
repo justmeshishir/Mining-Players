@@ -6,12 +6,14 @@ class WalletsController < ApplicationController
 		if @wallets.valid?
 			redirect_to withdraws_path
 		else
-			render :index,status: :unprocessable_entity
+			redirect_to withdraws_path
+			flash[:alert] = "Please fill up all fields"
 		end
 	end
 
 	private
 	def wallet_params
-		params.require(:wallet).permit(:account_id,:address,:date)
+		total_wallet = Balance.where(account_id: current_account.id).sum("crypto_amount")
+		params.require(:wallet).permit(:account_id,:address,:date).merge(amount: total_wallet)
 	end
 end

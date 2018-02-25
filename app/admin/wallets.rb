@@ -1,16 +1,10 @@
 ActiveAdmin.register Wallet do
   menu false
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
-#   permitted
-# end
+  permit_params :account_id, :address, :date, :amount, :confirm
 
+  before_update do |wallet|
+    if wallet.confirm?
+      Balance.where(account_id: wallet.account_id).update_all(crypto_amount: 0.0, aud_amount: 0.0)
+    end
+  end
 end
