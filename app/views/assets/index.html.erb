@@ -49,8 +49,8 @@
         <th>Model</th>
         <th>Memory</th>
         <th>Status</th>
-        <th>Mined Balance in AUD</th>
-        <th>Mined Balance in CRYPTO</th>
+        <th>AUD Balance</th>
+        <th>CRYPTO Balance</th>
       </tr>
     </thead>
 
@@ -75,8 +75,6 @@
          <% end %>
          <% if !asset.lock || asset.status == " waiting_ delivery" %>
         <td><%= link_to 'Edit' , edit_asset_path(id: asset.id), class: 'btn btn-sm btn-primary' %> </td>
-        <% else %>
-        <td><b>Locked</b></td>
         <% end %>
       </tr>
       <% else %>
@@ -89,14 +87,12 @@
         <td><%= asset.balance.aud_amount %></td>
         <td><%= asset.balance.crypto_amount %></td>
         <% if !asset.return_request %>
-        <td><%= link_to 'Return' , return_assets_path(id: asset.id), class: 'btn btn-sm btn-success' %></td>
+        <td><%= link_to 'Return' , return_assets_path(id: asset.id), class: 'btn btn-sm btn-success', data: {confirm: "Are you sure?"}%></td>
         <% else %>
         <td><%= link_to 'Unreturn' , unreturn_assets_path(id: asset.id), class: 'btn btn-sm btn-primary' %> </td>
          <% end %>
          <% if !asset.lock || asset.status == " waiting_ delivery" %>
         <td><%= link_to 'Edit' , edit_asset_path(id: asset.id), class: 'btn btn-sm btn-primary' %> </td>
-        <% else %>
-        <td><b>Locked</b></td>
         <% end %>
       </tr>
       <% end %>
