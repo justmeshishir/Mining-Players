@@ -62,7 +62,20 @@
         <td><%= asset.make %></td>
         <td><%= asset.memory %></td>
         <td><%= asset.model %></td>
-        <td><%= asset.status %></td>
+        <td><%
+        if asset.status == "active"
+          concat "Active & Mining"
+        end
+        if asset.status == "waiting_delivery"
+          concat "Waiting Delivery"
+        end
+        if asset.status == "received"
+          concat "Received and Testing"
+        end
+        if asset.status == "returned"
+          concat "Returned"
+        end
+        %></td>
         <td><%= asset.balance.aud_amount %></td>
         <td><%= asset.balance.crypto_amount %></td>
         <% if !asset.return_request%>
@@ -83,7 +96,20 @@
         <td><%= asset.make %></td>
         <td><%= asset.memory %></td>
         <td><%= asset.model %></td>
-        <td><%= asset.status %></td>
+        <td><%
+        if asset.status == "active"
+          concat "Active & Mining"
+        end
+        if asset.status == "waiting_delivery"
+          concat "Waiting Delivery"
+        end
+        if asset.status == "received"
+          concat "Received and Testing"
+        end
+        if asset.status == "returned"
+          concat "Returned"
+        end
+         %></td>
         <td><%= asset.balance.aud_amount %></td>
         <td><%= asset.balance.crypto_amount %></td>
         <% if !asset.return_request %>
