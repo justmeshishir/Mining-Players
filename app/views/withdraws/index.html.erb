@@ -13,11 +13,13 @@
   <div class="modal-dialog" role="document">
     <% if @method == "aud" %>
     <div class="modal-content">
+
       <%= simple_form_for Bank.new do |f| %>
       <div class="modal-header">
 
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
         <h4 class="modal-title" id="myModalLabel">Add your Bank</h4>
+        <p>Active your payment method to CRYPTO <%= link_to 'HERE', edit_account_registration_path %> to withdraw in crypto currency.</p>
       </div>
 
       <div class="modal-body">
@@ -33,10 +35,12 @@
       <% end %>
       <% else %>
       <div class="modal-content">
+
         <%= simple_form_for Wallet.new do |f| %>
        <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
         <h4 class="modal-title" id="myModalLabel">Add your Wallet</h4>
+        <p>Active your payment method to AUD <%= link_to 'HERE', edit_account_registration_path %> to withdraw using Bank</p>
       </div>
       <div class="modal-body">
 
