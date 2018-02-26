@@ -34,9 +34,14 @@ $header-font:'Pacifico', cursive;
 $font:50px;
 
 body {
-  background-color: #F4F4F4;
+  background-color: red;
 }
 header.masthead{
   width: 100%;
-  background-image: url('https://blackrockdigital.github.io/startbootstrap-creative/img/header.jpg') !important;
+  background-image: url('https://s3.amazonaws.com/influencive.com/wp-content/uploads/2017/05/25101605/blockchain.jpg') !important;
+}
+.footer{
+  background-color: #343a40;
+  color: white;
+  padding: 10px;
 }
