@@ -83,7 +83,7 @@
         <% else %>
         <td>
           <% if asset.status != 'returned' %>
-            <%= link_to 'Unreturn' , unreturn_assets_path(id: asset.id), class: 'btn btn-sm btn-primary' %> </td>
+            <%= link_to 'Cancel Return' , unreturn_assets_path(id: asset.id), class: 'btn btn-sm btn-primary' %> </td>
           <% end %>
          <% end %>
          <% if !asset.lock || asset.status == " waiting_ delivery" %>
@@ -116,7 +116,7 @@
           <% if !asset.return_request %>
           <%= link_to 'Return' , return_assets_path(id: asset.id), class: 'btn btn-sm btn-success', data: {confirm: "Are you sure?"}%>
           <% else %>
-          <%= link_to 'Unreturn' , unreturn_assets_path(id: asset.id), class: 'btn btn-sm btn-primary' %>
+          <%= link_to 'Cancel Return' , unreturn_assets_path(id: asset.id), class: 'btn btn-sm btn-primary' %>
            <% end %>
          <% end %></td>
          <% if !asset.lock || asset.status == " waiting_ delivery" %>
