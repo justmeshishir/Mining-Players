@@ -34,12 +34,32 @@ $header-font:'Pacifico', cursive;
 $font:50px;
 
 body {
-  background-color: red;
+
 }
+
 header.masthead{
   width: 100%;
   background-image: url('https://s3.amazonaws.com/influencive.com/wp-content/uploads/2017/05/25101605/blockchain.jpg') !important;
 }
+
+#mainNav{
+  background-color: #312f2f;
+  color: white !important;
+}
+
+.navbar-brand{
+  font-size: 30px !important;
+  color: black;
+}
+.nav-link{
+  font-size: 14px !important;
+  opacity: 1;
+}
+
+.container{
+    font-size: 16px;
+}
+
 .footer{
   background-color: #343a40;
   color: white;
