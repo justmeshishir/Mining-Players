@@ -25,17 +25,11 @@
 
   <body>
     <div id="wrapper">
-
-        <%= render 'shared/navbar' %>
-        <%= render 'shared/flash_messages' %>
-        <div class="container">
-          <%= yield %>
-       </div>
-      </div>
-
-      <div class="container">
-          <%= render 'shared/footer' %>
-       </div>
+      <%= render 'shared/navbar' %>
+      <%= render 'shared/flash_messages' %>
+      <%= yield %>
+      <%= render 'shared/footer' %>
+    </div>
   </body>
   <!-- Bootstrap core JavaScript -->
   <script src="https://blackrockdigital.github.io/startbootstrap-creative/vendor/jquery/jquery.min.js"></script>
