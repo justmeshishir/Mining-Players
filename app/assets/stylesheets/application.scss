@@ -10,53 +10,62 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- 
+
  *= require_self
 
  */
- @import "bootstrap-sprockets";
- @import "bootstrap"; 
+@import "_variables";
+@import "_mixins";
+@import "_bootstrap-overrides";
+@import "_global";
+@import "_masthead";
+@import "_navbar";
+@import "_portfolio";
+@import "_services";
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "creative.scss";
+@import "creative.css";
+@import "creative.min.css";
+
 $primary-font:'Open Sans', sans-serif;
 $secondary-font:'Dosis', sans-serif;
 $header-font:'Pacifico', cursive;
 $font:50px;
-*
-{
-  margin:0;
-  padding:0;
-}
-html,
-body
-{
-  font-family:$primary-font;
+
+html {
+  font-size: 14px;
 }
 
-body {
-  background-color: #F4F4F4;
-}
- .navbar-default  .navbar-header .navbar-brand
- {
-  font-family:$header-font;
-  font-size:25px;
-
- }
- html,
-body {
-  height: 100%;
-  /* The html and body elements cannot have any padding or margin. */
+header.masthead{
+  width: 100%;
+  background-image: url('https://s3.amazonaws.com/influencive.com/wp-content/uploads/2017/05/25101605/blockchain.jpg') !important;
 }
 
-/* Wrapper for page content to push down footer */
-#wrapper {
-  min-height: 100%;
-  height: auto;
-  /* Negative indent footer by its height */
-  margin: 0 auto -45px;
-  /* Pad bottom by footer height */
-  padding: 0 0 45px;
+#mainNav{
+  background-color: #312f2f;
+  color: white !important;
 }
 
-/* Set the fixed height of the footer here */
-.footer {
-height: 45px;
+.navbar-brand{
+  font-size: 30px !important;
+  color: black;
+}
+.nav-link{
+  font-size: 14px !important;
+  opacity: 1;
+}
+
+
+.footer{
+  background-color: #343a40;
+  color: white;
+  padding: 10px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #312f2f;
+  color: white;
+  text-align: center;
 }

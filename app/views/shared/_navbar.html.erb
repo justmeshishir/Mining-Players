@@ -1,24 +1,21 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <%= link_to 'Mining Players' , root_path, class:'navbar-brand' %>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-right">
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand js-scroll-trigger" href="#page-top">  <%= link_to 'Mining Hub' , root_path, class:'navbar-brand' %></a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto pull-right">
         <% if account_signed_in? %>
-          <li><%= link_to 'Assets' , assets_path %></li>
-          <li><%= link_to 'Payouts' , withdraws_path %></li>
-          <li><%= link_to 'Edit Profile' , edit_account_registration_path %></li>
-          <li><%= link_to 'Log Out', destroy_account_session_path, method: :delete %></li>
+          <li class="nav-item"><%= link_to 'Assets' , assets_path, class:"nav-link js-scroll-trigger " %></li>
+          <li class="nav-item"><%= link_to 'Payouts' , withdraws_path, class:"nav-link js-scroll-trigger " %></li>
+          <li class="nav-item"><%= link_to 'Edit Profile' , edit_account_registration_path, class:"nav-link js-scroll-trigger " %></li>
+          <li class="nav-item"><%= link_to 'Log Out', destroy_account_session_path, class:"nav-link js-scroll-trigger", method: :delete %></li>
           <% else %>
-           <li><%= link_to 'Home', root_path %></li>
-            <li><%= link_to 'Sign Up', new_account_registration_path %></li>
-            <li><%= link_to 'Log In', new_account_session_path %></li>
+           <li class="nav-item"><%= link_to 'Home', root_path, class:"nav-link js-scroll-trigger pull-right"  %></li>
+            <li class="nav-item"><%= link_to 'Sign Up', new_account_registration_path, class:"nav-link js-scroll-trigger " %></li>
+            <li class="nav-item"><%= link_to 'Log In', new_account_session_path, class:"nav-link js-scroll-trigger " %></li>
           <% end %>
       </ul>
     </div>
