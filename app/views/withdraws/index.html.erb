@@ -1,156 +1,167 @@
 <div class="container" style="margin-top: 100px">
-  <button type="button" class="btn btn-primary btn-lg btn_idea pull-right" data-toggle="modal" data-target="#myModal" pull-center>
-  <span class="glyphicon glyphicon-plus"></span> &nbsp;Withdraw
-</button>
+  <button type="button" class="btn btn-primary btn-lg btn_idea pull-right" data-toggle="modal" data-target="#myModal" pull-center="pull-center">
+    <span class="glyphicon glyphicon-plus"></span>
+    &nbsp;Withdraw
+  </button>
 
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <% if @method == "aud" %>
+        <div class="modal-content">
+          <div style="margin-top:10px;padding:10px;">
+            <h4 class="modal-title" id="myModalLabel">Add your Bank</h4>
+            <p>Active your payment method to CRYPTO
+              <%= link_to 'HERE', edit_account_registration_path %>
+              to withdraw in crypto currency.</p>
+          </div>
+          <%= simple_form_for Bank.new do |f| %>
+          <div class="modal-header"></div>
+          <div class="modal-body">
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <% if @method == "aud" %>
-    <div class="modal-content">
-      <div style="margin-top:10px;padding:10px;">
-        <h4 class="modal-title" id="myModalLabel">Add your Bank</h4>
-        <p>Active your payment method to CRYPTO <%= link_to 'HERE', edit_account_registration_path %> to withdraw in crypto currency.</p>
-      </div>
-      <%= simple_form_for Bank.new do |f| %>
-      <div class="modal-header">
-      </div>
-      <div class="modal-body">
-        <%= f.input :name %>
-        <%= f.input :bsb %>
-        <%= f.input :account_number %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <%= f.submit 'Submit' , class: 'btn btn-primary' %>
-      </div>
-      <% end %>
+            <%= f.input :name %>
+            <%= f.input :bsb %>
+            <%= f.input :account_number %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <%= f.submit 'Submit' , class: 'btn btn-primary' %>
+          </div>
+        <% end %>
       <% else %>
-      <div class="modal-content">
-        <div style="margin-top:10px;padding:10px;">
-          <h4 class="modal-title" id="myModalLabel">Add your Wallet</h4>
-          <p>Active your payment method to AUD <%= link_to 'HERE', edit_account_registration_path %> to withdraw using Bank</p>
-        </div>
-        <%= simple_form_for Wallet.new do |f| %>
-       <div class="modal-header">
-      </div>
-      <div class="modal-body">
+        <div class="modal-content">
+          <div style="margin-top:10px;padding:10px;">
+            <h4 class="modal-title" id="myModalLabel">Add your Wallet</h4>
+            <p>Active your payment method to AUD
+              <%= link_to 'HERE', edit_account_registration_path %>
+              to withdraw using Bank</p>
+          </div>
+          <%= simple_form_for Wallet.new do |f| %>
+          <div class="modal-header"></div>
+          <div class="modal-body">
 
-        <%= f.input :address %>
-        <%= f.input :date %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <%= f.submit 'Submit', class: 'btn btn-primary' %>
-      </div>
-      <% end %>
+            <%= f.input :address %>
+            <%= f.input :date %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <%= f.submit 'Submit', class: 'btn btn-primary' %>
+          </div>
+        <% end %>
       <% end %>
 
     </div>
   </div>
 </div>
-<br />
-<br />
+<br/>
+<br/>
 <div>
-  <p><b>Total in Bank:</b>  $ <%= @total_bank_withdraw %></p>
-  <p><b>Total in Wallet:</b> <%= @total_wallet_withdraw %> ETH</p>
+  <p>
+    <b>Total in Bank:</b>
+    $
+    <%= @total_bank_withdraw %></p>
+  <p>
+    <b>Total in Wallet:</b>
+    <%= @total_wallet_withdraw %>
+    ETH</p>
 </div>
 <!-- Tab panes -->
 
 <div id="exTab2" class="container">
-<ul class="nav nav-tabs">
-      <% if @method == "aud" %>
+  <ul class="nav nav-tabs">
+    <% if @method == "aud" %>
       <li class="active">
-        <a  href="#4" data-toggle="tab">Banks</a>
+        <a href="#4" data-toggle="tab">Banks</a>
       </li>
 
-      <li><a href="#5" data-toggle="tab">Wallets</a>
+      <li>
+        <a href="#5" data-toggle="tab">Wallets</a>
       </li>
-      <% else %>
+    <% else %>
       <li >
-        <a  href="#4" data-toggle="tab">Banks</a>
+        <a href="#4" data-toggle="tab">Banks</a>
       </li>
 
-      <li class="active"><a href="#5" data-toggle="tab">Wallets</a>
+      <li class="active">
+        <a href="#5" data-toggle="tab">Wallets</a>
       </li>
-      <% end %>
+    <% end %>
 
-    </ul>
+  </ul>
 
-      <div class="tab-content ">
-        <% if @method == "aud" %>
-          <div class="tab-pane active" id="4">
-           <% else %>
-          <div class="tab-pane" id="4">
+  <div class="tab-content ">
+    <% if @method == "aud" %>
+      <div class="tab-pane active" id="4">
+      <% else %>
+        <div class="tab-pane" id="4">
+        <% end %>
+
+        <% if @banks.blank? %>
+          <h4>You have not withdrawn any balance on your bank yet.</h4>
+        <% else %>
+          <table class="table">
+            <thead>
+              <th>Name</th>
+              <th>Bsb</th>
+              <th>Account number</th>
+              <th>Confirm</th>
+            </thead>
+            <% @banks.each do |bank| %>
+              <tr>
+                <td>
+                  <%= bank.name %>
+                </td>
+                <td>
+                  <%= bank.bsb %>
+                </td>
+                <td>
+                  <%= bank.account_number %>
+                </td>
+                <td>
+                  <%= (bank.confirm?) ? "Confirmed" : "Not Confirmed" %>
+                </td>
+              </tr>
             <% end %>
 
-      <% if @banks.blank? %>
-        <h4>You have not withdrawn any balance on your bank yet.</h4>
-      <% else %>
-        <table class="table">
-          <thead>
-            <th>Name</th>
-            <th>Bsb</th>
-            <th>Account number</th>
-            <th>Confirm</th>
-          </thead>
-          <% @banks.each do |bank| %>
-            <tr>
-              <td>
-                <%= bank.name %>
-              </td>
-              <td>
-                <%= bank.bsb %>
-              </td>
-              <td>
-                <%= bank.account_number %>
-              </td>
-              <td>
-                <%= (bank.confirm?) ? "Confirmed" : "Not Confirmed" %>
-              </td>
-            </tr>
-          <% end %>
-
-        </table>
+          </table>
         <% end %>
         <div class="text-center">
-    <%= will_paginate @banks %>
-  </div>
+          <%= will_paginate @banks %>
+        </div>
       </div>
       <% if @method != "aud" %>
         <div class="tab-pane active" id="5">
-         <% else %>
+        <% else %>
           <div class="tab-pane " id="5">
           <% end %>
-      <% if @wallets.blank? %>
-        <h4>You have not withdrawn any amount in crypto currency yet.</h4>
-      <% else %>
-        <table class="table">
-          <thead>
-            <th>Address</th>
-            <th>Date</th>
-            <th>Confirm</th>
-          </thead>
-          <% @wallets.each do |wallet| %>
-            <tr>
-              <td>
-                <%= wallet.address %>
-              </td>
-              <td>
-                <%= wallet.date %>
-              </td>
-              <td>
-                <%= (wallet.confirm?) ? "Confirmed" : "Not Confirmed" %>
-              </td>
-            </tr>
-          <% end %>
-        </table>
+          <% if @wallets.blank? %>
+            <h4>You have not withdrawn any amount in crypto currency yet.</h4>
+          <% else %>
+            <table class="table">
+              <thead>
+                <th>Address</th>
+                <th>Date</th>
+                <th>Confirm</th>
+              </thead>
+              <% @wallets.each do |wallet| %>
+                <tr>
+                  <td>
+                    <%= wallet.address %>
+                  </td>
+                  <td>
+                    <%= wallet.date %>
+                  </td>
+                  <td>
+                    <%= (wallet.confirm?) ? "Confirmed" : "Not Confirmed" %>
+                  </td>
+                </tr>
+              <% end %>
+            </table>
 
-      <% end %>
-      <div class="text-center">
-    <%= will_paginate @wallets %>
-  </div>
+          <% end %>
+          <div class="text-center">
+            <%= will_paginate @wallets %>
+          </div>
         </div>
       </div>
+    </div>
   </div>
-</div>
