@@ -14,6 +14,8 @@
  *= require_self
 
  */
+@import "bootstrap-sprockets";
+@import "bootstrap";
 @import "_variables";
 @import "_mixins";
 @import "_bootstrap-overrides";
@@ -22,8 +24,7 @@
 @import "_navbar";
 @import "_portfolio";
 @import "_services";
-@import "bootstrap-sprockets";
-@import "bootstrap";
+
 @import "creative.scss";
 @import "creative.css";
 @import "creative.min.css";

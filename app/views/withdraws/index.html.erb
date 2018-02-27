@@ -66,102 +66,73 @@
 </div>
 <!-- Tab panes -->
 
-<div id="exTab2" class="container">
-  <ul class="nav nav-tabs">
-    <% if @method == "aud" %>
-      <li class="active">
-        <a href="#4" data-toggle="tab">Banks</a>
-      </li>
-
-      <li>
-        <a href="#5" data-toggle="tab">Wallets</a>
-      </li>
-    <% else %>
-      <li >
-        <a href="#4" data-toggle="tab">Banks</a>
-      </li>
-
-      <li class="active">
-        <a href="#5" data-toggle="tab">Wallets</a>
-      </li>
-    <% end %>
-
+    <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#home">Bank</a></li>
+    <li><a data-toggle="tab" href="#menu1">Wallet</a></li>
   </ul>
 
-  <div class="tab-content ">
-    <% if @method == "aud" %>
-      <div class="tab-pane active" id="4">
+  <div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+      <% if @banks.blank? %>
+        <h4>You have not withdrawn any balance on your bank yet.</h4>
       <% else %>
-        <div class="tab-pane" id="4">
-        <% end %>
-
-        <% if @banks.blank? %>
-          <h4>You have not withdrawn any balance on your bank yet.</h4>
-        <% else %>
-          <table class="table">
-            <thead>
-              <th>Name</th>
-              <th>Bsb</th>
-              <th>Account number</th>
-              <th>Confirm</th>
-            </thead>
-            <% @banks.each do |bank| %>
-              <tr>
-                <td>
-                  <%= bank.name %>
-                </td>
-                <td>
-                  <%= bank.bsb %>
-                </td>
-                <td>
-                  <%= bank.account_number %>
-                </td>
-                <td>
-                  <%= (bank.confirm?) ? "Confirmed" : "Not Confirmed" %>
-                </td>
-              </tr>
-            <% end %>
-
-          </table>
-        <% end %>
+        <table class="table">
+          <thead>
+            <th>Name</th>
+            <th>Bsb</th>
+            <th>Account number</th>
+            <th>Confirm</th>
+          </thead>
+          <% @banks.each do |bank| %>
+            <tr>
+              <td>
+                <%= bank.name %>
+              </td>
+              <td>
+                <%= bank.bsb %>
+              </td>
+              <td>
+                <%= bank.account_number %>
+              </td>
+              <td>
+                <%= (bank.confirm?) ? "Confirmed" : "Not Confirmed" %>
+              </td>
+            </tr>
+          <% end %>
+        </table>
         <div class="text-center">
           <%= will_paginate @banks %>
         </div>
-      </div>
-      <% if @method != "aud" %>
-        <div class="tab-pane active" id="5">
-        <% else %>
-          <div class="tab-pane " id="5">
-          <% end %>
-          <% if @wallets.blank? %>
-            <h4>You have not withdrawn any amount in crypto currency yet.</h4>
-          <% else %>
-            <table class="table">
-              <thead>
-                <th>Address</th>
-                <th>Date</th>
-                <th>Confirm</th>
-              </thead>
-              <% @wallets.each do |wallet| %>
-                <tr>
-                  <td>
-                    <%= wallet.address %>
-                  </td>
-                  <td>
-                    <%= wallet.date %>
-                  </td>
-                  <td>
-                    <%= (wallet.confirm?) ? "Confirmed" : "Not Confirmed" %>
-                  </td>
-                </tr>
-              <% end %>
-            </table>
-
-          <% end %>
-          <div class="text-center">
-            <%= will_paginate @wallets %>
-          </div>
-        </div>
-      </div>
+        <% end %>
     </div>
+    <div id="menu1" class="tab-pane fade">
+      <% if @wallets.blank? %>
+        <h4>You have not withdrawn any amount in crypto currency yet.</h4>
+      <% else %>
+        <table class="table">
+          <thead>
+            <th>Address</th>
+            <th>Date</th>
+            <th>Confirm</th>
+          </thead>
+          <% @wallets.each do |wallet| %>
+            <tr>
+              <td>
+                <%= wallet.address %>
+              </td>
+              <td>
+                <%= wallet.date %>
+              </td>
+              <td>
+                <%= (wallet.confirm?) ? "Confirmed" : "Not Confirmed" %>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+        <div class="text-center">
+          <%= will_paginate @wallets %>
+        </div>
+      <% end %>
+    </div>
+  </div>
   </div>
