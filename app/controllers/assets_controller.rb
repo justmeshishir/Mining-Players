@@ -39,9 +39,11 @@ class AssetsController < ApplicationController
 
 
 	def return
-		Asset.where(id: params[:id]).update(return_request: true , return_request_date: Date.today)
+		binding.pry
+		Asset.where(id: params[:id]).update(return_request: true , return_request_date: Date.today, return_request_address: params[:return_request_address])
 		#@asset = Asset.find(params[:id])
 		#AssetMailer.request_asset(@asset).deliver
+
 		redirect_to assets_path
 	end
 

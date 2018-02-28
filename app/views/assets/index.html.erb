@@ -34,6 +34,9 @@
   </div>
 </div>
 
+
+
+
 <div class="table-responsive">
   <table class="table">
     <thead>
@@ -73,7 +76,7 @@
         <td><%= asset.balance.aud_amount %></td>
         <td><%= asset.balance.crypto_amount %></td>
         <% if !asset.return_request %>
-        <td><%= link_to 'Return' , return_assets_path(id: asset.id), class: 'btn btn-sm btn-success' %></td>
+        <td><%= link_to 'Return' , return_assets_path(id: asset.id), class: 'btn btn-sm btn-success', data: {toggle:"modal"}, href:"#returnModal" %></td>
         <% else %>
         <td>
           <% if asset.status != 'returned' %>
@@ -108,7 +111,26 @@
         <td><%= asset.balance.crypto_amount %></td>
         <td><% if asset.status != "waiting_delivery" %>
           <% if !asset.return_request %>
-          <%= link_to 'Return' , return_assets_path(id: asset.id), class: 'btn btn-sm btn-success', data: {confirm: "Are you sure?"}%>
+          <button class='btn btn-sm btn-success' data-toggle="modal" data-target="#returnModal">Return</button>
+          <div class="modal fade" id="returnModal" tabindex="-1" role="dialog" aria-labelledby="returnModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="returnModalLabel">Please enter the address you want to return the asset.</h4>
+                </div>
+                <div class="modal-body">
+                  <form action="<%= return_assets_path %>" method="get">
+                    <input type="hidden" name="id" value="<%= asset.id %>">
+                    <input type="text" name="return_request_address" class="form-control text required" required />
+                </div>
+                <div class="modal-footer">
+                  <input type="submit" class='btn btn-sm btn-success' value="Return" />
+                </form>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
           <% else %>
           <%= link_to 'Cancel Return' , unreturn_assets_path(id: asset.id), class: 'btn btn-sm btn-primary' %>
            <% end %>
