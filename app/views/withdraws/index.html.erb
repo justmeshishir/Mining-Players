@@ -6,18 +6,21 @@
 
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
-      <% if @method == "aud" %>
         <div class="modal-content">
           <div style="margin-top:10px;padding:10px;">
             <h4 class="modal-title" id="myModalLabel">Add your Bank</h4>
-            <p>Active your payment method to CRYPTO
-              <%= link_to 'HERE', edit_account_registration_path %>
-              to withdraw in crypto currency.</p>
+            <br />
+            <label>Withdraw Method: </label>
+            <select id="withdraw_method" onchange="withdraw_method()" class="form-control" style="width:50%;">
+              <option value="bank">Bank</option>
+              <option value="eth">ETH</option>
+            </select>
           </div>
-          <%= simple_form_for Bank.new do |f| %>
-          <div class="modal-header"></div>
-          <div class="modal-body">
 
+          <div class="modal-header"></div>
+          <div class="form-bank">
+          <div class="modal-body">
+            <%= simple_form_for Bank.new do |f| %>
             <%= f.input :name %>
             <%= f.input :bsb %>
             <%= f.input :account_number %>
@@ -27,28 +30,19 @@
             <%= f.submit 'Submit' , class: 'btn btn-primary' %>
           </div>
         <% end %>
-      <% else %>
-        <div class="modal-content">
-          <div style="margin-top:10px;padding:10px;">
-            <h4 class="modal-title" id="myModalLabel">Add your Wallet</h4>
-            <p>Active your payment method to AUD
-              <%= link_to 'HERE', edit_account_registration_path %>
-              to withdraw using Bank</p>
-          </div>
+      </div>
+      <div class="form-wallet" style="display: none;">
+        <div class="modal-body">
           <%= simple_form_for Wallet.new do |f| %>
-          <div class="modal-header"></div>
-          <div class="modal-body">
-
-            <%= f.input :address %>
-            <%= f.input :date %>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <%= f.submit 'Submit', class: 'btn btn-primary' %>
-          </div>
-        <% end %>
+          <%= f.input :address %>
+          <%= f.input :date %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <%= f.submit 'Submit', class: 'btn btn-primary' %>
+        </div>
       <% end %>
-
+      </div>
     </div>
   </div>
 </div>
@@ -136,3 +130,15 @@
     </div>
   </div>
   </div>
+  <script>
+    function withdraw_method(){
+      var method = $('#withdraw_method').val();
+      if(method == 'bank'){
+        $('.form-bank').show();
+        $('.form-wallet').hide();
+      }else{
+        $('.form-wallet').show();
+        $('.form-bank').hide();
+      }
+    }
+  </script>
