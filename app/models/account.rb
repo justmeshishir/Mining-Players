@@ -9,6 +9,6 @@ class Account < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   validates :name, :email, :address, :contact, presence: true
 
-  enum receive_type: [:aud, :crypto]
+  enum receive_type: [:crypto, :aud]
 
 end

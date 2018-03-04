@@ -9,16 +9,26 @@
         <div class="modal-content">
           <div style="margin-top:10px;padding:10px;">
             <h4 class="modal-title" id="myModalLabel">Add your Bank</h4>
-            <br />
+             <!--<br />
             <label>Withdraw Method: </label>
             <select id="withdraw_method" onchange="withdraw_method()" class="form-control" style="width:50%;">
               <option value="bank">Bank</option>
               <option value="eth">ETH</option>
-            </select>
+            </select> -->
           </div>
-
+          <%= simple_form_for Wallet.new do |f| %>
           <div class="modal-header"></div>
-          <div class="form-bank">
+            <div class="modal-body">
+
+              <%= f.input :address %>
+              <%= f.input :date %>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <%= f.submit 'Submit', class: 'btn btn-primary' %>
+            </div>
+          <% end %>
+          <!-- <div class="form-bank">
           <div class="modal-body">
             <%= simple_form_for Bank.new do |f| %>
             <%= f.input :name %>
@@ -30,19 +40,8 @@
             <%= f.submit 'Submit' , class: 'btn btn-primary' %>
           </div>
         <% end %>
-      </div>
-      <div class="form-wallet" style="display: none;">
-        <div class="modal-body">
-          <%= simple_form_for Wallet.new do |f| %>
-          <%= f.input :address %>
-          <%= f.input :date %>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <%= f.submit 'Submit', class: 'btn btn-primary' %>
-        </div>
-      <% end %>
-      </div>
+      </div> -->
+
     </div>
   </div>
 </div>
@@ -60,13 +59,12 @@
 </div>
 <!-- Tab panes -->
 
-    <ul class="nav nav-tabs">
+  <!-- <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#home">Bank</a></li>
     <li><a data-toggle="tab" href="#menu1">Wallet</a></li>
-  </ul>
+  </ul> -->
 
-  <div class="tab-content">
-    <div id="home" class="tab-pane fade in active">
+    <!-- <div id="home" class="tab-pane fade in active">
       <% if @banks.blank? %>
         <h4>You have not withdrawn any balance on your bank yet.</h4>
       <% else %>
@@ -98,8 +96,9 @@
           <%= will_paginate @banks %>
         </div>
         <% end %>
-    </div>
-    <div id="menu1" class="tab-pane fade">
+    </div> -->
+    <br />
+    <h4><u>Withdraw Histroy</u></h4>
       <% if @wallets.blank? %>
         <h4>You have not withdrawn any amount in crypto currency yet.</h4>
       <% else %>
@@ -127,18 +126,16 @@
           <%= will_paginate @wallets %>
         </div>
       <% end %>
-    </div>
-  </div>
   </div>
   <script>
-    function withdraw_method(){
-      var method = $('#withdraw_method').val();
-      if(method == 'bank'){
-        $('.form-bank').show();
-        $('.form-wallet').hide();
-      }else{
-        $('.form-wallet').show();
-        $('.form-bank').hide();
-      }
-    }
+    // function withdraw_method(){
+    //   var method = $('#withdraw_method').val();
+    //   if(method == 'bank'){
+    //     $('.form-bank').show();
+    //     $('.form-wallet').hide();
+    //   }else{
+    //     $('.form-wallet').show();
+    //     $('.form-bank').hide();
+    //   }
+    // }
   </script>
