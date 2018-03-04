@@ -5,7 +5,7 @@
 <br><br><br>
 
 <div>
-  <p><b>Total Amount in AUD:</b>  $ <%= @total_bank %></p>
+  <!-- <p><b>Total Amount in AUD:</b>  $ <%= @total_bank %></p> -->
   <p><b>Total Amount in CRYPTO:</b> <%= @total_wallet %> ETH</p>
 </div>
 
@@ -45,8 +45,9 @@
         <th>Make</th>
         <th>Model</th>
         <th>Memory</th>
+        <th>Serial Number</th>
         <th>Status</th>
-        <th>CRYPTO Balance</th>
+        <th>ETH Balance</th>
       </tr>
     </thead>
 
@@ -56,8 +57,9 @@
       <tr style="background:orange">
         <td><%= asset.name %></td>
         <td><%= asset.make %></td>
-        <td><%= asset.memory %></td>
         <td><%= asset.model %></td>
+        <td><%= asset.memory %></td>
+        <td><%= asset.serial_number %></td>
         <td><%
         if asset.status == "active"
           concat "Active & Mining"
@@ -89,8 +91,9 @@
       <tr>
         <td><%= asset.name %></td>
         <td><%= asset.make %></td>
-        <td><%= asset.memory %></td>
         <td><%= asset.model %></td>
+        <td><%= asset.memory %></td>
+        <td><%= asset.serial_number %></td>
         <td><%
         if asset.status == "active"
           concat "Active & Mining"
