@@ -292,7 +292,7 @@ ActiveAdmin.setup do |config|
   # config.order_clause = MyOrderClause
   config.namespace :admin do |admin|
   admin.build_menu do |menu|
-    menu.add :label => 'Payout Request' do |submenu|
+    menu.add :label => 'Payouts' do |submenu|
       submenu.add label: 'Payout Requested', url: "/admin/wallets?scope=unconfirmed"
       submenu.add label: 'Payout Confirmed', url: "/admin/wallets?scope=confirmed"
     end
