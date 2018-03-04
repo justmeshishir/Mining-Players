@@ -4,7 +4,6 @@ class AssetsController < ApplicationController
 
 	def index
 		@assets = Asset.where(account_id: current_account.id).order("created_at DESC").paginate(page: params[:page], per_page: 10)
-		@total_bank = Balance.where(account_id: current_account.id).sum("aud_amount")
 		@total_wallet = Balance.where(account_id: current_account.id).sum("crypto_amount")
 	end
 
