@@ -293,8 +293,8 @@ ActiveAdmin.setup do |config|
   config.namespace :admin do |admin|
   admin.build_menu do |menu|
     menu.add :label => 'Payout Request' do |submenu|
-      submenu.add label: 'Banks', url: "/admin/banks"
-      submenu.add label: 'Wallets', url: "/admin/wallets"
+      submenu.add label: 'Payout Requested', url: "/admin/wallets?scope=unconfirmed"
+      submenu.add label: 'Payout Confirmed', url: "/admin/wallets?scope=confirmed"
     end
   end
 end
