@@ -22,7 +22,6 @@
         <%= f.input :make %>
         <%= f.input :model %>
         <%= f.input :memory %>
-        <%= f.input :serial_number %>
         <%= f.input :description %>
       </div>
       <div class="modal-footer">
@@ -45,7 +44,7 @@
         <th>Make</th>
         <th>Model</th>
         <th>Memory</th>
-        <th>Serial Number</th>
+        <th>Hash Rate</th>
         <th>Status</th>
         <th>ETH Balance</th>
       </tr>
@@ -59,7 +58,7 @@
         <td><%= asset.make %></td>
         <td><%= asset.model %></td>
         <td><%= asset.memory %></td>
-        <td><%= asset.serial_number %></td>
+        <td><%= asset.hash_rate %></td>
         <td><%
         if asset.status == "active"
           concat "Active & Mining"
@@ -93,7 +92,7 @@
         <td><%= asset.make %></td>
         <td><%= asset.model %></td>
         <td><%= asset.memory %></td>
-        <td><%= asset.serial_number %></td>
+        <td><%= asset.hash_rate %></td>
         <td><%
         if asset.status == "active"
           concat "Active & Mining"

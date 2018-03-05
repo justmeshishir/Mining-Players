@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180228053435) do
+ActiveRecord::Schema.define(version: 20180305041008) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 20180228053435) do
     t.string "serial_number"
     t.text "description"
     t.string "return_request_address"
+    t.integer "hash_rate", default: 0
     t.index ["account_id"], name: "index_assets_on_account_id"
   end
 
