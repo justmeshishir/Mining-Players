@@ -21,7 +21,7 @@
         <%= f.input :name %>
         <%= f.input :make %>
         <%= f.input :model %>
-        <%= f.input :memory %>
+        <%= f.input :memory, collection: ["4GB", "8GB", "16GB", "32GB", "64GB"], include_blank: false %>
         <%= f.input :description %>
       </div>
       <div class="modal-footer">
