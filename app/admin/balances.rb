@@ -16,6 +16,14 @@ ActiveAdmin.register Balance do
     actions
   end
 
+  form(html: { multipart: true }) do |f|
+    f.inputs do
+      f.input :crypto_name
+      f.input :crypto_amount
+    end
+    f.actions
+  end
+
   member_action :payout, :method => :get do
     balance = Balance.find(params[:id])
     Payout.create(asset_id: balance.asset_id, payout_amount: balance.crypto_amount, payout_date: Date.today)

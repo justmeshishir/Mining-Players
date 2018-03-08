@@ -7,7 +7,7 @@ class WithdrawsController < ApplicationController
 		#@total_bank_withdraw = Bank.where(account_id: current_account.id, confirm: true).sum("amount")
 		#@total_wallet_withdraw = Wallet.where(account_id: current_account.id, confirm: true).sum("amount")
 		@assets = Asset.where(account_id: current_account.id)
-		@payouts = Payout.where(asset_id: current_account.assets.ids).paginate(:page => params[:page], :per_page => 3)
+		@payouts = Payout.where(asset_id: current_account.assets.ids).order("created_at DESC").paginate(:page => params[:page], :per_page => 3)
 		@total_payouts = Payout.where(asset_id: current_account.assets.ids).sum("payout_amount")
 	end
 end
