@@ -1,14 +1,9 @@
 <div class="container" style="margin-top: 100px">
-  <button type="button" class="btn btn-primary btn-lg btn_idea pull-right" data-toggle="modal" data-target="#myModal" pull-center="pull-center">
-    <span class="glyphicon glyphicon-plus"></span>
-    &nbsp;Withdraw
-  </button>
-
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div style="margin-top:10px;padding:10px;">
-            <h4 class="modal-title" id="myModalLabel">Add your Bank</h4>
+            <h4 class="modal-title" id="myModalLabel">Add your Wallet</h4>
              <!--<br />
             <label>Withdraw Method: </label>
             <select id="withdraw_method" onchange="withdraw_method()" class="form-control" style="width:50%;">
@@ -53,8 +48,12 @@
     $
     <%= @total_bank_withdraw %></p>
   <p> -->
-    <b>Total in Wallet:</b>
-    <%= @total_wallet_withdraw %>
+  <p>
+    <label>Default Wallet address: </label> <%= (@wallet.blank?) ? '[No wallet available]' : @wallet.address  %>
+  </p>
+
+    <b>Total in Payouts:</b>
+    <%= @total_payouts %>
     ETH</p>
 </div>
 <!-- Tab panes -->
@@ -98,35 +97,42 @@
         <% end %>
     </div> -->
     <br />
-    <h4><u>Withdraw Histroy</u></h4>
-      <% if @wallets.blank? %>
+    <h4><u>Payout Histroy</u></h4>
+      <% if @payouts.blank? %>
         <h4>You have not withdrawn any amount in crypto currency yet.</h4>
       <% else %>
         <table class="table">
           <thead>
-            <th>Address</th>
-            <th>Date</th>
-            <th>Confirm</th>
+            <th>Asset</th>
+            <th>Payout Amount</th>
+            <th>Payout Date</th>
           </thead>
-          <% @wallets.each do |wallet| %>
+          <% @payouts.each do |payout| %>
             <tr>
               <td>
-                <%= wallet.address %>
+                <%= payout.asset.name %>
               </td>
               <td>
-                <%= wallet.date %>
+                <%= payout.payout_amount %>
               </td>
               <td>
-                <%= (wallet.confirm?) ? "Confirmed" : "Not Confirmed" %>
+                <%= payout.payout_date %>
               </td>
             </tr>
-          <% end %>
+            <% end %>
         </table>
         <div class="text-center">
-          <%= will_paginate @wallets %>
-        </div>
+           <%= will_paginate @payouts %>
+         </div>
       <% end %>
+      <div class="text-center">
+        <button type="button" class="btn btn-primary btn-lg btn_idea" data-toggle="modal" data-target="#myModal" pull-center="pull-center">
+          <span class="glyphicon glyphicon-plus"></span>
+          &nbsp;Wallet
+        </button>
+    </div>
   </div>
+
   <script>
     // function withdraw_method(){
     //   var method = $('#withdraw_method').val();

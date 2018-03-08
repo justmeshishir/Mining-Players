@@ -290,14 +290,7 @@ ActiveAdmin.setup do |config|
   # You can inherit it with own class and inject it for all resources
   #
   # config.order_clause = MyOrderClause
-  config.namespace :admin do |admin|
-  admin.build_menu do |menu|
-    menu.add :label => 'Payouts' do |submenu|
-      submenu.add label: 'Payout Requested', url: "/admin/wallets?scope=unconfirmed"
-      submenu.add label: 'Payout Confirmed', url: "/admin/wallets?scope=confirmed"
-    end
-  end
-end
+
 end
 class ActiveAdmin::Devise::SessionsController
 

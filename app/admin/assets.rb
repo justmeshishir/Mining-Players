@@ -1,6 +1,6 @@
 ActiveAdmin.register Asset do
   actions :all
-  permit_params :account, :name, :make, :model, :memory, :return_request, :returned_date, :status, :lock, :serial_number, :description, :return_request_address
+  permit_params :account, :name, :make, :model, :memory, :return_request, :returned_date, :status, :lock, :serial_number, :description, :return_request_address, :hash_rate
 
   scope :all
   scope :active_assets
@@ -16,6 +16,7 @@ ActiveAdmin.register Asset do
     column :model
     column :memory
     column :status
+    column :hash_rate
     column :return_request_address
     actions
   end
@@ -31,6 +32,7 @@ ActiveAdmin.register Asset do
       f.input :returned_date, as: :datepicker
       f.input :return_request_address
       f.input :status
+      f.input :hash_rate
       f.input :lock
     end
     f.actions
