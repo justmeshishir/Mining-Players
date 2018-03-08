@@ -11,7 +11,7 @@ ActiveAdmin.register Balance do
     column :asset
     column :crypto_name
     column :crypto_amount
-    column :payout_date
+    column "Last Payout Date", :payout_date
     column :account
     actions
   end
