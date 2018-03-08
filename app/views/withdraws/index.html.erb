@@ -48,8 +48,12 @@
     $
     <%= @total_bank_withdraw %></p>
   <p> -->
-    <b>Total in Wallet:</b>
-    <%= @total_wallet_withdraw %>
+  <p>
+    <label>Default Wallet address: </label> <%= (@wallet.blank?) ? '[No wallet available]' : @wallet.address  %>
+  </p>
+
+    <b>Total in Payouts:</b>
+    <%= @total_payouts %>
     ETH</p>
 </div>
 <!-- Tab panes -->
@@ -93,26 +97,33 @@
         <% end %>
     </div> -->
     <br />
-    <h4><u>Withdraw Histroy</u></h4>
-      <% if @wallet.blank? %>
+    <h4><u>Payout Histroy</u></h4>
+      <% if @payouts.blank? %>
         <h4>You have not withdrawn any amount in crypto currency yet.</h4>
       <% else %>
         <table class="table">
           <thead>
-            <th>Address</th>
-            <th>Date</th>
+            <th>Asset</th>
+            <th>Payout Amount</th>
+            <th>Payout Date</th>
           </thead>
-
+          <% @payouts.each do |payout| %>
             <tr>
               <td>
-                <%= @wallet.address %>
+                <%= payout.asset.name %>
               </td>
               <td>
-                <%= @wallet.date %>
+                <%= payout.payout_amount %>
+              </td>
+              <td>
+                <%= payout.payout_date %>
               </td>
             </tr>
-
+            <% end %>
         </table>
+        <div class="text-center">
+           <%= will_paginate @payouts %>
+         </div>
       <% end %>
       <div class="text-center">
         <button type="button" class="btn btn-primary btn-lg btn_idea" data-toggle="modal" data-target="#myModal" pull-center="pull-center">
