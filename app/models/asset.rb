@@ -1,6 +1,7 @@
 class Asset < ApplicationRecord
 	belongs_to :account
 	has_one :balance
+	has_many :payouts
 
 	scope :return_request, -> {where(return_request: true, returned_date: nil)}
 	scope :active_assets, -> {where(return_request: false)}
