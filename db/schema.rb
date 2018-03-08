@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180305041008) do
+ActiveRecord::Schema.define(version: 20180307062644) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -112,6 +112,14 @@ ActiveRecord::Schema.define(version: 20180305041008) do
     t.float "amount"
     t.boolean "confirm", default: false
     t.index ["account_id"], name: "index_banks_on_account_id"
+  end
+
+  create_table "payouts", force: :cascade do |t|
+    t.integer "asset_id"
+    t.integer "payout_amount"
+    t.integer "payout_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "wallets", force: :cascade do |t|
