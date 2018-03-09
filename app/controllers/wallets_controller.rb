@@ -2,14 +2,14 @@ class WalletsController < ApplicationController
 	before_action :authenticate_account!
 
 	def create
-		@wallets = current_account.wallets.create(wallet_params)
-		if @wallets.valid?
-			redirect_to withdraws_path
-		else
-			redirect_to withdraws_path
-			flash[:alert] = "Please fill up all fields"
+			@wallets = current_account.wallets.create(wallet_params)
+			if @wallets.valid?
+				redirect_to withdraws_path
+			else
+				redirect_to withdraws_path
+				flash[:alert] = "Please enter valid wallet address"
+			end
 		end
-	end
 
 	private
 	def wallet_params
